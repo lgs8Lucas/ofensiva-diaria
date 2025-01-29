@@ -3,7 +3,9 @@ import styles from "./Home.module.css"
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <main>
+      Home
+    </main>
   )
 }
 
