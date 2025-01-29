@@ -12,6 +12,7 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Offensives from "./pages/Offensives/Offensives";
 
 function App() {
 	const [user, setUser] = useState(undefined);
@@ -38,6 +39,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
+						<Route path="/offensives" element={<Offensives />} />
 					</Routes>
 					<Footer />
 				</BrowserRouter>

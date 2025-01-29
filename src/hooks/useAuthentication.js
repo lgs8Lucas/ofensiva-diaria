@@ -31,7 +31,7 @@ export const useAuthentication = () => {
 				data.email,
 				data.password
 			); //Cria usuário com login e senha
-			await updateProfile(user, { displayName: name }); //Define username do usuário
+			await updateProfile(user, { displayName: data.name }); //Define username do usuário
 			setLoading(false);
 			setError(null);
 			return user;
