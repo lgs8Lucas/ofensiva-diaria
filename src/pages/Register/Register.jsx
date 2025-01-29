@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Register.module.css";
+import { useAuthentication } from "../../hooks/useAuthentication";
 const initialState = {
 	name: "",
 	email: "",
@@ -10,12 +11,16 @@ const initialState = {
 const Register = () => {
 	const [form, setForm] = useState(initialState);
 	const [error, setError] = useState("");
+
+	const { createUser, error: authError, loading } = useAuthentication();
+
 	const editForm = (e) => {
 		const temp = form;
 		temp[e.target.name] = e.target.value;
 		setForm({ ...temp });
 	};
-	const handleSubmit = (e) => {
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError("");
 		if (form.password !== form.confirmPassword) {
@@ -27,13 +32,23 @@ const Register = () => {
 			email: form.email,
 			password: form.password,
 		};
-		console.log(user);
+		const res = await createUser(user);
+		console.log(res);
 	};
+
+	useEffect(() => {
+		if (authError) {
+			setError(authError);
+		}
+	}, [authError]);
 
 	return (
 		<main className={styles.register}>
 			<h1>Cadastre-se já!</h1>
-      <p>Começe a planejar seu cronograma do dia a dia criando suas ofensivas diárias!</p>
+			<p>
+				Começe a planejar seu cronograma do dia a dia criando suas ofensivas
+				diárias!
+			</p>
 			<form onSubmit={handleSubmit}>
 				<label>
 					<span>Nome:</span>
@@ -66,6 +81,7 @@ const Register = () => {
 						placeholder="Digite sua Senha"
 						value={form.password}
 						onChange={editForm}
+						minLength={6}
 					/>
 				</label>
 				<label>
@@ -77,9 +93,10 @@ const Register = () => {
 						placeholder="Confirme sua Senha"
 						value={form.confirmPassword}
 						onChange={editForm}
+						minLength={6}
 					/>
 				</label>
-				<button className="btn">Cadastrar</button>
+				<button className="btn" disabled={loading}>{loading?"Carregando...":"Cadastrar"}</button>
 				{error ? (
 					<div className="error">
 						<p>{error}</p>
