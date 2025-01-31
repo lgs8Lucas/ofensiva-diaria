@@ -8,6 +8,7 @@ import styles from "./Navbar.module.css";
 
 const Navbar = () => {
 	const user = useAuthValue();
+	const { logout } = useAuthentication();
 
 	return (
 		<nav className={styles.navbar}>
@@ -50,11 +51,12 @@ const Navbar = () => {
 								Ofensivas
 							</NavLink>
 						</li>
-						<span className={styles.user}><li>{user.displayName}</li></span>
+						<li>
+							<button onClick={logout}>Sair</button>
+						</li>
 					</>
 				)}
 			</ul>
-			
 		</nav>
 	);
 };
