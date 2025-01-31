@@ -1,0 +1,17 @@
+.footer{
+    text-align: center;
+    color: var(--color-bg-one);
+    background-color: var(--color-bg-two);
+    padding-top: .7em;
+    padding-bottom: .5em;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 -2px 10px 0;
+}
+.footer a{
+    color: var(--color-gray);
+    text-decoration: underline;
+}
+.footer h1{
+    font-size: 2em;
+    font-weight: 300;
+    margin: 0;
+}
