@@ -37,9 +37,15 @@ function App() {
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/register" element={<Register />} />
-						<Route path="/offensives" element={<Offensives />} />
+						<Route
+							path="/login"
+							element={!user ? <Login /> : <Navigate to={"/"} />}
+						/>
+						<Route
+							path="/register"
+							element={!user ? <Register /> : <Navigate to={"/"} />}
+						/>
+						<Route path="/offensives" element={user?<Offensives />:<Navigate to={"/login"}/>} />
 					</Routes>
 					<Footer />
 				</BrowserRouter>
