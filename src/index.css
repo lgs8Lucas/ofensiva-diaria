@@ -124,14 +124,6 @@ button[disabled] {
 	background-color: #aaa;
 }
 
-.container .error {
-	color: #c80036;
-	background-color: #f5ededa2;
-	border: 1px solid #c80036;
-	padding: 5px;
-	border-radius: 5px;
-}
-
 .error {
 	color: #c80036;
 	background-color: #f5ededa2;

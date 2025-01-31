@@ -33,7 +33,7 @@ const Register = () => {
 			password: form.password,
 		};
 		const res = await createUser(user);
-		console.log(res);
+		
 	};
 
 	useEffect(() => {
