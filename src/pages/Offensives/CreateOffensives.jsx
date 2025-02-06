@@ -1,26 +1,43 @@
 import React, { useState } from "react";
 import styles from "./Offensives.module.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuthValue } from "../../context/AuthContext";
+import { useInsertDocument } from "../../hooks/useInsertDocument";
 
 const CreateOffensives = () => {
+	const navigate = useNavigate()
+	const [goal, setGoal] = useState("");
+	const [type, setType] = useState("marking");
+	const [legend, setLegend] = useState("");
+	const [formError, setFormError] = useState("");
+
+	const { insertDocument, response } = useInsertDocument("offensives");
+	const user = useAuthValue();
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-        let lastUpdate = new Date()
-        const startCount = new Date()
+		let lastUpdate = new Date();
+		const startCount = new Date();
 
 		const offensive = {
 			goal,
 			type,
 			legend,
-            startCount,
-            lastUpdate,
+			startCount,
+			lastUpdate,
 		};
-		console.log(offensive);
-	};
 
-	const [goal, setGoal] = useState("");
-	const [type, setType] = useState("marking");
-	const [legend, setLegend] = useState("");
+		setFormError("");
+		
+		insertDocument({
+			...offensive,
+			uid: user.uid,
+		});
+
+		navigate("/offensives")
+	};
+	
 
 	return (
 		<main>
@@ -55,10 +72,17 @@ const CreateOffensives = () => {
 						onChange={(e) => setLegend(e.target.value)}
 					></textarea>
 				</label>
-				<button className="btn mr-2">Criar</button>
+				<button className="btn mr-2" disabled={response.loading}>
+					{response.loading ? "Criando..." : "Criar"}
+				</button>
 				<Link className="btn btn-dark" to={"/offensives"}>
 					Voltar
 				</Link>
+				{response.error && (
+					<p className="error">
+						{response.error}
+					</p>
+				)}
 			</form>
 			<div className={styles.guide}>
 				<p>
