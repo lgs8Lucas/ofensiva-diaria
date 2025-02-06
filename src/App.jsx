@@ -13,6 +13,7 @@ import Login from "./pages/Login/Login";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Offensives from "./pages/Offensives/Offensives";
+import CreateOffensives from "./pages/Offensives/CreateOffensives";
 
 function App() {
 	const [user, setUser] = useState(undefined);
@@ -45,7 +46,14 @@ function App() {
 							path="/register"
 							element={!user ? <Register /> : <Navigate to={"/"} />}
 						/>
-						<Route path="/offensives" element={user?<Offensives />:<Navigate to={"/login"}/>} />
+						<Route
+							path="/offensives"
+							element={user ? <Offensives /> : <Navigate to={"/login"} />}
+						/>
+						<Route
+							path="/offensives/create"
+							element={user ? <CreateOffensives /> : <Navigate to={"/login"} />}
+						/>
 					</Routes>
 					<Footer />
 				</BrowserRouter>

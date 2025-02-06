@@ -1,7 +1,9 @@
 :root {
-	--color-bg-one: #f5f5f5;
+	--color-bg-one: #ebebeb;
 	--color-gray: #c0c0c0;
+	--color-lgray: #e5e5e5;
 	--color-bg-two: #004e98;
+	--color-offensive: #ff6700;
 }
 
 * {
@@ -76,7 +78,7 @@ label span {
 }
 
 input,
-textarea {
+textarea,select {
 	box-sizing: border-box;
 	border: none;
 	border-bottom: 1px solid #ccc;
@@ -135,4 +137,8 @@ button[disabled] {
 	padding: 5px;
 	border-radius: 5px;
 	margin-top: 1em;
+}
+
+.mr-2 {
+	margin-right: 2em;
 }
