@@ -4,6 +4,8 @@
 	--color-lgray: #e5e5e5;
 	--color-bg-two: #004e98;
 	--color-offensive: #ff6700;
+	--color-back-offensive: #ffb703;
+	--color-non-offensive: #415a77;
 }
 
 * {
@@ -52,7 +54,8 @@ a:hover {
 	color: #5e5e5e;
 }
 
-form {
+form,
+.container {
 	max-width: 60%;
 	margin: 0 auto;
 }
@@ -78,7 +81,8 @@ label span {
 }
 
 input,
-textarea,select {
+textarea,
+select {
 	box-sizing: border-box;
 	border: none;
 	border-bottom: 1px solid #ccc;

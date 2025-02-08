@@ -6,18 +6,16 @@ import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from "../../hooks/useInsertDocument";
 
 const CreateOffensives = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const [goal, setGoal] = useState("");
 	const [type, setType] = useState("marking");
 	const [legend, setLegend] = useState("");
-	const [formError, setFormError] = useState("");
 
 	const { insertDocument, response } = useInsertDocument("offensives");
 	const user = useAuthValue();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		let lastUpdate = new Date();
 		const startCount = new Date();
 
 		const offensive = {
@@ -25,19 +23,17 @@ const CreateOffensives = () => {
 			type,
 			legend,
 			startCount,
-			lastUpdate,
 		};
 
-		setFormError("");
-		
+		if (type === "marking") offensive.lastUpdate = new Date();
+
 		insertDocument({
 			...offensive,
 			uid: user.uid,
 		});
 
-		navigate("/offensives")
+		navigate("/offensives");
 	};
-	
 
 	return (
 		<main>
@@ -78,11 +74,7 @@ const CreateOffensives = () => {
 				<Link className="btn btn-dark" to={"/offensives"}>
 					Voltar
 				</Link>
-				{response.error && (
-					<p className="error">
-						{response.error}
-					</p>
-				)}
+				{response.error && <p className="error">{response.error}</p>}
 			</form>
 			<div className={styles.guide}>
 				<p>

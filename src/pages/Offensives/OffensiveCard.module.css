@@ -1,0 +1,36 @@
+.card {
+	list-style: none;
+	padding: 1em;
+	border: 2px solid var(--color-gray);
+	border-radius: 1em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.offensive {
+	padding: 0 1em 0 0;
+	font-weight: 400;
+	font-size: 1.5em;
+}
+
+.goal {
+	flex-grow: 1;
+	font-size: 1.2em;
+}
+
+.actions {
+	display: flex;
+	justify-content: space-between;
+	gap: 1em;
+}
+
+.offensive {
+    color: var(--color-non-offensive);
+    filter: drop-shadow(0 0 0.75rem var(--color-gray));
+}
+
+.offensive.active {
+    filter: drop-shadow(0 0 0.75rem var(--color-back-offensive));
+	color: var(--color-offensive);
+}
