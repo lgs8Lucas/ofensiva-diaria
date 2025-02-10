@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./OffensiveCard.module.css";
 
-const OffensiveCard = ({ offensive }) => {
+const OffensiveCard = ({ offensive, deleteOffensive }) => {
 	let strike = 0;
 	const now = new Date().setHours(0, 0, 0, 0);
 	let hasOffensive = null;
@@ -22,6 +22,7 @@ const OffensiveCard = ({ offensive }) => {
 		hasOffensive = last === now;
 	} else {
 		strike = now - start;
+		strike = strike/60/60/24/1000		
 		hasOffensive = strike > 0;
 	}
 	return (
@@ -39,7 +40,7 @@ const OffensiveCard = ({ offensive }) => {
 					<button className="btn btn-dark btn-danger">interromper</button>
 				)}
 				<button className="btn btn-dark">Editar</button>
-				<button className="btn btn-dark btn-danger">Remover</button>
+				<button className="btn btn-dark btn-danger" onClick={_=>deleteOffensive(offensive.id)}>Remover</button>
 			</div>
 		</li>
 	);
