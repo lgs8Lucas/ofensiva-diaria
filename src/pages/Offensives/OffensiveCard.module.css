@@ -25,6 +25,17 @@
 	gap: 1em;
 }
 
+.actions button{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: .5em;
+}
+
+.actions svg{
+	width: 1em;
+}
+
 .offensive {
     color: var(--color-non-offensive);
     filter: drop-shadow(0 0 0.75rem var(--color-gray));

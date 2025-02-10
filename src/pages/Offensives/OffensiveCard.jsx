@@ -1,6 +1,11 @@
 import React from "react";
 import styles from "./OffensiveCard.module.css";
 
+//icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
 const OffensiveCard = ({
 	offensive,
 	deleteOffensiveHandler,
@@ -44,7 +49,7 @@ const OffensiveCard = ({
 						onClick={(_) => setOffensiveHandler(offensive)}
 						disabled={hasOffensive}
 					>
-						Marcar
+						<FontAwesomeIcon icon={faCheck} />
 					</button>
 				) : (
 					<button
@@ -52,15 +57,17 @@ const OffensiveCard = ({
 						onClick={(_) => setOffensiveHandler(offensive)}
 						disabled={!hasOffensive}
 					>
-						interromper
+						<FontAwesomeIcon icon={faXmark} />
 					</button>
 				)}
-				<button className="btn btn-dark">Editar</button>
+				<button className="btn btn-dark">
+					<FontAwesomeIcon icon={faPen} />
+				</button>
 				<button
 					className="btn btn-dark btn-danger"
 					onClick={(_) => deleteOffensiveHandler(offensive.id)}
 				>
-					Remover
+					<FontAwesomeIcon icon={faTrash} />
 				</button>
 			</div>
 		</li>
