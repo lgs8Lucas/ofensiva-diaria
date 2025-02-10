@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./OffensiveCard.module.css";
 
-const OffensiveCard = ({ offensive, deleteOffensive }) => {
+const OffensiveCard = ({
+	offensive,
+	deleteOffensiveHandler,
+	setOffensiveHandler,
+}) => {
 	let strike = 0;
 	const now = new Date().setHours(0, 0, 0, 0);
 	let hasOffensive = null;
@@ -22,7 +26,7 @@ const OffensiveCard = ({ offensive, deleteOffensive }) => {
 		hasOffensive = last === now;
 	} else {
 		strike = now - start;
-		strike = strike/60/60/24/1000		
+		strike = strike / 60 / 60 / 24 / 1000;
 		hasOffensive = strike > 0;
 	}
 	return (
@@ -35,12 +39,29 @@ const OffensiveCard = ({ offensive, deleteOffensive }) => {
 			<span className={styles.goal}>{offensive.goal}</span>
 			<div className={styles.actions}>
 				{offensive.type === "marking" ? (
-					<button className="btn">Marcar</button>
+					<button
+						className="btn"
+						onClick={(_) => setOffensiveHandler(offensive)}
+						disabled={hasOffensive}
+					>
+						Marcar
+					</button>
 				) : (
-					<button className="btn btn-dark btn-danger">interromper</button>
+					<button
+						className="btn btn-dark btn-danger"
+						onClick={(_) => setOffensiveHandler(offensive)}
+						disabled={!hasOffensive}
+					>
+						interromper
+					</button>
 				)}
 				<button className="btn btn-dark">Editar</button>
-				<button className="btn btn-dark btn-danger" onClick={_=>deleteOffensive(offensive.id)}>Remover</button>
+				<button
+					className="btn btn-dark btn-danger"
+					onClick={(_) => deleteOffensiveHandler(offensive.id)}
+				>
+					Remover
+				</button>
 			</div>
 		</li>
 	);

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
+import { useSetOffensive } from "../../hooks/useSetOffensive";
 import OffensiveCard from "./OffensiveCard";
 import styles from "./Offensives.module.css";
 
@@ -15,11 +16,17 @@ const Offensives = () => {
 		error,
 	} = useFetchDocuments("offensives", user.uid);
 
+	const { setOffensive, response: setResponse } = useSetOffensive("offensives");
+
 	const { deleteDocument, response: delResponse } =
 		useDeleteDocument("offensives");
 
-	const deleteOffensive = (id) => {
+	const deleteOffensiveHandler = (id) => {		
 		deleteDocument(id);
+	};
+
+	const setOffensiveHandler = (offensive) => {
+		setOffensive(offensive);
 	};
 
 	if (loading) {
@@ -43,12 +50,14 @@ const Offensives = () => {
 								<OffensiveCard
 									offensive={offensive}
 									key={offensive.id}
-									deleteOffensive={deleteOffensive}
+									deleteOffensiveHandler={deleteOffensiveHandler}
+									setOffensiveHandler={setOffensiveHandler}
 								/>
 							))}
 					</ul>
 				)}
 				{delResponse.error && <p className="error">{delResponse.error}</p>}
+				{setResponse.error && <p className="error">{setResponse.error}</p>}
 				<p>
 					Crie ainda mais offensivas!{" "}
 					<Link to="/offensives/create">Clicando aqui!</Link>

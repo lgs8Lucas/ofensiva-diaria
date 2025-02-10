@@ -130,8 +130,14 @@ select {
 	background-color: #e4003a;
 }
 
-button[disabled] {
+button[disabled],
+.btn[disabled] {
 	background-color: #aaa;
+}
+
+button[disabled]:hover, .btn[disabled]:hover {
+	background-color: #aaa;
+	cursor: not-allowed;
 }
 
 .error {
