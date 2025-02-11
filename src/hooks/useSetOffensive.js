@@ -5,8 +5,9 @@ export const useSetOffensive = (docCollection) => {
 	const markOffensive = (offensive) => {
 		const data = { ...offensive };
 		const notReset =
-			new Date().setHours(0, 0, 0, 0) -
-				new Date(offensive.lastUpdate.seconds * 1000).setHours(0, 0, 0, 0) <=
+			(new Date().setHours(0, 0, 0, 0) -
+				new Date(offensive.lastUpdate.seconds * 1000).setHours(0, 0, 0, 0)) /
+				86400000 <=
 			1;
 		if (!notReset) data.startCount = new Date();
 		data.lastUpdate = new Date();

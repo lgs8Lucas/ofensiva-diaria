@@ -12,6 +12,9 @@
 	color: var(--color-bg-one);
 }
 
+.navbar svg{
+	margin-right: .5em;
+}
 
 .links_list {
 	display: flex;

@@ -27,11 +27,16 @@ const OffensiveCard = ({
 			0,
 			0
 		);
-		strike = last - start + 1;
+		const notReset =
+			(new Date().setHours(0, 0, 0, 0) -
+				new Date(offensive.lastUpdate.seconds * 1000).setHours(0, 0, 0, 0)) /
+				86400000 <=
+			1;
+		strike = notReset ? (last - start) / 86400000 + 1 : 0;
 		hasOffensive = last === now;
 	} else {
 		strike = now - start;
-		strike = strike / 60 / 60 / 24 / 1000;
+		strike = strike / 86400000;
 		hasOffensive = strike > 0;
 	}
 	return (
