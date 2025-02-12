@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Offensives from "./pages/Offensives/Offensives";
 import CreateOffensives from "./pages/Offensives/CreateOffensives";
+import EditOffensive from "./pages/Offensives/EditOffensive";
 
 function App() {
 	const [user, setUser] = useState(undefined);
@@ -49,6 +50,10 @@ function App() {
 						<Route
 							path="/offensives"
 							element={user ? <Offensives /> : <Navigate to={"/login"} />}
+						/>
+						<Route
+							path="/offensives/edit/:id"
+							element={user ? <EditOffensive /> : <Navigate to={"/login"} />}
 						/>
 						<Route
 							path="/offensives/create"

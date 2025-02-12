@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./OffensiveCard.module.css";
+import { Link } from "react-router-dom";
 
 //icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -65,9 +66,9 @@ const OffensiveCard = ({
 						<FontAwesomeIcon icon={faXmark} />
 					</button>
 				)}
-				<button className="btn btn-dark">
+				<Link className="btn btn-dark" to={`/offensives/edit/${offensive.id}`}>
 					<FontAwesomeIcon icon={faPen} />
-				</button>
+				</Link>
 				<button
 					className="btn btn-dark btn-danger"
 					onClick={(_) => deleteOffensiveHandler(offensive.id)}
