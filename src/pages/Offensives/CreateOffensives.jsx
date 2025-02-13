@@ -32,7 +32,9 @@ const CreateOffensives = () => {
 			uid: user.uid,
 		});
 
-		navigate("/offensives");
+		if (!response.error) {
+			navigate("/offensives");
+		}
 	};
 
 	return (
