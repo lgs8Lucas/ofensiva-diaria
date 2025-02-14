@@ -12,10 +12,10 @@ import {
 	faFire,
 	faHome,
 	faUser,
-	faUserAlt,
 	faUserAltSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import { faUserCheck } from "@fortawesome/free-solid-svg-icons/faUserCheck";
+
+import offensiveLogo from "../assets/icons/daily-offensive-white.svg";
 
 const Navbar = () => {
 	const user = useAuthValue();
@@ -23,7 +23,10 @@ const Navbar = () => {
 
 	return (
 		<nav className={styles.navbar}>
-			<NavLink to="/">Ofensiva Diária</NavLink>
+			<NavLink to="/" className={styles.logo}>
+				<img src={offensiveLogo} alt="Logo da ofensiva diária"/>
+				<span>Ofensiva Diária</span>
+			</NavLink>
 			<ul className={styles.links_list}>
 				<li>
 					<NavLink

@@ -59,7 +59,7 @@ const Offensives = () => {
 				{delResponse.error && <p className="error">{delResponse.error}</p>}
 				{setResponse.error && <p className="error">{setResponse.error}</p>}
 				<p>
-					Crie ainda mais offensivas!{" "}
+					Crie ainda mais ofensivas!{" "}
 					<Link to="/offensives/create">Clicando aqui!</Link>
 				</p>
 			</div>

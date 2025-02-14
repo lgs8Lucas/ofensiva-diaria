@@ -7,13 +7,29 @@
 	padding: 0.5em 2em;
 }
 
-.navbar a, .navbar, .navbar button{
+.logo{
+	display: flex;
+	align-items: center;
+	font-weight: 500;
+}
+
+.logo span{
+	font-size: 1.2em;
+}
+
+.logo img {
+	height: 3em;
+}
+
+.navbar a,
+.navbar,
+.navbar button {
 	text-decoration: none;
 	color: var(--color-bg-one);
 }
 
-.navbar svg{
-	margin-right: .5em;
+.navbar svg {
+	margin-right: 0.5em;
 }
 
 .links_list {
@@ -25,7 +41,8 @@
 	margin-right: 1em;
 }
 
-.links_list li a, .links_list li button {
+.links_list li a,
+.links_list li button {
 	padding: 0.1em 0.6em;
 	background-color: transparent;
 	border: none;
@@ -33,7 +50,8 @@
 	border-bottom: 2px solid transparent;
 }
 
-.links_list li a:hover, .links_list li button:hover {
+.links_list li a:hover,
+.links_list li button:hover {
 	border-bottom: 2px solid;
 }
 
