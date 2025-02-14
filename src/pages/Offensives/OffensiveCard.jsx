@@ -5,17 +5,13 @@ import { Link } from "react-router-dom";
 //icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faArrowDown,
-	faArrowUp,
 	faCheck,
 	faClose,
 	faInfo,
 	faPen,
-	faSign,
 	faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faSignIn } from "@fortawesome/free-solid-svg-icons/faSignIn";
 
 const OffensiveCard = ({
 	offensive,

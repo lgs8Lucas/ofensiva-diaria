@@ -10,7 +10,6 @@
 	justify-content: space-between;
 	align-items: center;
 }
-
 .offensive {
 	padding: 0 1em 0 0;
 	font-weight: 400;
@@ -56,4 +55,17 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+@media (max-width:900px) {
+	.cardMain{
+		flex-direction: column;
+		gap: 1em;
+	}
+	.offensive{
+		padding: 0;
+	}
+	.goal{
+		text-align: center;
+	}
 }
