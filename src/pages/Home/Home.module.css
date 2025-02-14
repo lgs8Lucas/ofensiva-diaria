@@ -1,0 +1,13 @@
+.content{
+    display: flex;
+    align-items: center;   
+}
+
+.content a{
+    text-decoration: underline;
+    color: var(--color-bg-two);
+}
+
+.content h1, .content h2{
+    margin-left: .2em;
+}
