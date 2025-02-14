@@ -135,7 +135,8 @@ button[disabled],
 	background-color: #aaa;
 }
 
-button[disabled]:hover, .btn[disabled]:hover {
+button[disabled]:hover,
+.btn[disabled]:hover {
 	background-color: #aaa;
 	cursor: not-allowed;
 }
@@ -151,4 +152,12 @@ button[disabled]:hover, .btn[disabled]:hover {
 
 .mr-2 {
 	margin-right: 2em;
+}
+
+@media (max-width: 630px) {
+	form,
+	.container {
+		max-width: 85%;
+		margin: 0 auto;
+	}
 }
