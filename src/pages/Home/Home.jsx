@@ -28,7 +28,7 @@ const Home = () => {
 					Para começar na ofensiva diária é simples, crie uma{" "}
 					<Link to={"/offensives/create"}>meta clicando aqui</Link>, após isto
 					basta acompanhar a sua meta e atualiza-la diáriamente na sua{" "}
-					<Link to={"/offensives"}>lista de offensivas.</Link>
+					<Link to={"/offensives"}>lista de ofensivas.</Link>
 				</p>
 				<h2>😎 Quer participar do projeto?</h2>
 				<p>
