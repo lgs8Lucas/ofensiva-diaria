@@ -1,8 +1,11 @@
 .card {
 	list-style: none;
-	padding: 1em;
 	border: 2px solid var(--color-gray);
 	border-radius: 1em;
+}
+
+.cardMain {
+	padding: 1em;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -25,23 +28,32 @@
 	gap: 1em;
 }
 
-.actions button{
+.actions button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: .5em;
+	padding: 0.5em;
 }
 
-.actions svg{
+.actions svg {
 	width: 1em;
 }
 
 .offensive {
-    color: var(--color-non-offensive);
-    filter: drop-shadow(0 0 0.75rem var(--color-gray));
+	color: var(--color-non-offensive);
+	filter: drop-shadow(0 0 0.75rem var(--color-gray));
 }
 
 .offensive.active {
-    filter: drop-shadow(0 0 0.75rem var(--color-back-offensive));
+	filter: drop-shadow(0 0 0.75rem var(--color-back-offensive));
 	color: var(--color-offensive);
+}
+
+.cardLegend {
+	margin: 0 1em;
+	padding: 0 1em;
+	border-top: 1px solid var(--color-gray);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
