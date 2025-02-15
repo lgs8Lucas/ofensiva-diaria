@@ -21,7 +21,7 @@ const Offensives = () => {
 	const { deleteDocument, response: delResponse } =
 		useDeleteDocument("offensives");
 
-	const deleteOffensiveHandler = (id) => {		
+	const deleteOffensiveHandler = (id) => {
 		deleteDocument(id);
 	};
 
@@ -37,10 +37,10 @@ const Offensives = () => {
 		<main>
 			<div className="container">
 				<h1>Acompanhe suas ofensivas</h1>
-				<p>Veja todas as suas offensivas</p>
+				<p>Veja todas as suas ofensivas</p>
 				{offensives && offensives.length === 0 ? (
 					<p>
-						Você ainda não tem nenhuma offensiva.{" "}
+						Você ainda não tem nenhuma ofensiva.{" "}
 						<Link to="/offensives/create">Crie já</Link>
 					</p>
 				) : (
@@ -58,10 +58,12 @@ const Offensives = () => {
 				)}
 				{delResponse.error && <p className="error">{delResponse.error}</p>}
 				{setResponse.error && <p className="error">{setResponse.error}</p>}
-				<p>
-					Crie ainda mais ofensivas!{" "}
-					<Link to="/offensives/create">Clicando aqui!</Link>
-				</p>
+				{offensives && offensives.length > 0 && (
+					<p>
+						Crie ainda mais ofensivas!{" "}
+						<Link to="/offensives/create">Clicando aqui!</Link>
+					</p>
+				)}
 			</div>
 		</main>
 	);

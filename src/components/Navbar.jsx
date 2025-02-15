@@ -54,7 +54,7 @@ const Navbar = () => {
 								to="/register"
 							>
 								<FontAwesomeIcon icon={faUserAltSlash} />
-								Cadastre-se
+								Cadastrar
 							</NavLink>
 						</li>
 					</>
