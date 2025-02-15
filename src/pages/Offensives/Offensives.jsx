@@ -37,24 +37,26 @@ const Offensives = () => {
 		<main>
 			<div className="container">
 				<h1>Acompanhe suas ofensivas</h1>
-				<p>Veja todas as suas ofensivas</p>
 				{offensives && offensives.length === 0 ? (
 					<p>
 						Você ainda não tem nenhuma ofensiva.{" "}
 						<Link to="/offensives/create">Crie já</Link>
 					</p>
 				) : (
-					<ul className={styles.list}>
-						{offensives &&
-							offensives.map((offensive) => (
-								<OffensiveCard
-									offensive={offensive}
-									key={offensive.id}
-									deleteOffensiveHandler={deleteOffensiveHandler}
-									setOffensiveHandler={setOffensiveHandler}
-								/>
-							))}
-					</ul>
+					<>
+						<p>Veja todas as suas ofensivas</p>
+						<ul className={styles.list}>
+							{offensives &&
+								offensives.map((offensive) => (
+									<OffensiveCard
+										offensive={offensive}
+										key={offensive.id}
+										deleteOffensiveHandler={deleteOffensiveHandler}
+										setOffensiveHandler={setOffensiveHandler}
+									/>
+								))}
+						</ul>
+					</>
 				)}
 				{delResponse.error && <p className="error">{delResponse.error}</p>}
 				{setResponse.error && <p className="error">{setResponse.error}</p>}
