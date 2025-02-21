@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 import Offensives from "./pages/Offensives/Offensives";
 import CreateOffensives from "./pages/Offensives/CreateOffensives";
 import EditOffensive from "./pages/Offensives/EditOffensive";
+import ResetPass from "./pages/ResetPass/ResetPass";
 
 function App() {
 	const [user, setUser] = useState(undefined);
@@ -46,6 +47,10 @@ function App() {
 						<Route
 							path="/register"
 							element={!user ? <Register /> : <Navigate to={"/"} />}
+						/>
+						<Route
+							path="/login/reset-pass"
+							element={!user ? <ResetPass /> : <Navigate to={"/"} />}
 						/>
 						<Route
 							path="/offensives"

@@ -61,6 +61,9 @@ const Login = () => {
 						onChange={editForm}
 						minLength={6}
 					/>
+				<p className={styles.resetPass}>
+					Esqueceu a sua senha? <Link to={"/login/reset-pass"}>Redefinir senha.</Link>
+				</p>
 				</label>
 
 				<button className="btn" disabled={loading}>
@@ -74,7 +77,7 @@ const Login = () => {
 					""
 				)}
 				<p>
-					Ainda não tem uma conta? <Link to={"/register"}>cadastre-se.</Link>
+					Ainda não tem uma conta? <Link to={"/register"}>Cadastre-se.</Link>
 				</p>
 			</form>
 		</main>
