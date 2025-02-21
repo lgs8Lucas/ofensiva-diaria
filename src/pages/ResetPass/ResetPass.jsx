@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import styles from "./ResetPass.module.css"
+import styles from "./ResetPass.module.css";
 import { Link } from "react-router-dom";
 
+import { useAuthentication } from "../../hooks/useAuthentication";
+
 const ResetPass = () => {
+	const { requestNewPass, loading, error } = useAuthentication();
 	const [email, setEmail] = useState("");
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        console.log(email);
-    }
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		requestNewPass(email);
+		console.log("Email enviado");
+		
+	};
 	return (
 		<main className={styles.reset}>
 			<h1>Redefina sua senha</h1>
@@ -23,8 +28,19 @@ const ResetPass = () => {
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</label>
-                <button className="btn">Solicitar redefinição</button>
-                <Link to={"/login"} className="btn btn-dark">Fazer login</Link>
+				<button className="btn" disabled={loading}>
+					Solicitar redefinição
+				</button>
+				<Link to={"/login"} className="btn btn-dark">
+					Fazer login
+				</Link>
+				{error ? (
+					<div className="error">
+						<p>{error}</p>
+					</div>
+				) : (
+					""
+				)}
 			</form>
 		</main>
 	);

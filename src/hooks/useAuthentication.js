@@ -6,6 +6,7 @@ import {
 	signInWithEmailAndPassword,
 	updateProfile,
 	signOut,
+	sendPasswordResetEmail,
 } from "firebase/auth"; //Pegando funções do Firebase
 
 import { useState, useEffect } from "react";
@@ -71,9 +72,23 @@ export const useAuthentication = () => {
 		setLoading(false);
 	};
 
+	//Request a new Pass
+	const requestNewPass = async (email) => {
+		checkIfIsCancelled();
+		setLoading(true);
+		setError(false);
+		try {
+			await sendPasswordResetEmail(auth, email);
+		} catch (error) {
+			setError("Ocorreu um erro, por favor tente mais tarde");
+			console.log(error.message);
+		}
+		setLoading(false);
+	};
+
 	useEffect(() => {
 		return () => setCanceled(true);
 	}, []);
 
-	return { auth, createUser, error, loading, logout, login };
+	return { auth, createUser, error, loading, logout, login, requestNewPass };
 };
