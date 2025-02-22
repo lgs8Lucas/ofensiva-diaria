@@ -32,7 +32,7 @@ const Login = () => {
 	}, [authError]);
 
 	return (
-		<main className={styles.login}>
+		<main className="textCenter">
 			<h1>Faça seu login!</h1>
 			<p>
 				Começe a planejar seu cronograma do dia a dia criando suas ofensivas
@@ -62,7 +62,7 @@ const Login = () => {
 						minLength={6}
 					/>
 				<p className={styles.resetPass}>
-					Esqueceu a sua senha? <Link to={"/login/reset-pass"}>Redefinir senha.</Link>
+					Esqueceu a sua senha? <Link to={"/reset-pass"}>Redefinir senha.</Link>
 				</p>
 				</label>
 

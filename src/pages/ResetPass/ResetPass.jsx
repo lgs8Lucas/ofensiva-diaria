@@ -7,14 +7,18 @@ import { useAuthentication } from "../../hooks/useAuthentication";
 const ResetPass = () => {
 	const { requestNewPass, loading, error } = useAuthentication();
 	const [email, setEmail] = useState("");
+	const [message, setMessage] = useState("");
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		requestNewPass(email);
-		console.log("Email enviado");
-		
+		if (!error) {
+			setMessage("Email para redefinição de senha enviado.");
+		} else {
+			setMessage("");
+		}
 	};
 	return (
-		<main className={styles.reset}>
+		<main className={`textCenter ${styles.reset}`}>
 			<h1>Redefina sua senha</h1>
 			<form onSubmit={handleSubmit}>
 				<label>
@@ -39,7 +43,11 @@ const ResetPass = () => {
 						<p>{error}</p>
 					</div>
 				) : (
-					""
+					message && (
+						<div className="message">
+							<p>{message}</p>
+						</div>
+					)
 				)}
 			</form>
 		</main>

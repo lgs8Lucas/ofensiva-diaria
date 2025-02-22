@@ -1,14 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
-import { useAuthentication } from "../hooks/useAuthentication";
 import { useAuthValue } from "../context/AuthContext";
 
 import styles from "./Navbar.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faDoorOpen,
 	faFire,
 	faHome,
 	faUser,
@@ -19,12 +16,10 @@ import offensiveLogo from "../assets/icons/daily-offensive-white.svg";
 
 const Navbar = () => {
 	const user = useAuthValue();
-	const { logout } = useAuthentication();
-
 	return (
 		<nav className={styles.navbar}>
 			<NavLink to="/" className={styles.logo}>
-				<img src={offensiveLogo} alt="Logo da ofensiva diária"/>
+				<img src={offensiveLogo} alt="Logo da ofensiva diária" />
 				<span>Ofensiva Diária</span>
 			</NavLink>
 			<ul className={styles.links_list}>
@@ -70,10 +65,13 @@ const Navbar = () => {
 							</NavLink>
 						</li>
 						<li>
-							<button onClick={logout}>
-								<FontAwesomeIcon icon={faDoorOpen} />
-								Sair
-							</button>
+							<NavLink
+								className={({ isActive }) => (isActive ? styles.active : "")}
+								to={"/account"}
+							>
+								<FontAwesomeIcon icon={faUser} />
+								{user.displayName}
+							</NavLink>
 						</li>
 					</>
 				)}

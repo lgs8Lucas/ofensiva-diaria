@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Register.module.css";
 import { useAuthentication } from "../../hooks/useAuthentication";
 const initialState = {
 	name: "",
@@ -43,7 +42,7 @@ const Register = () => {
 	}, [authError]);
 
 	return (
-		<main className={styles.register}>
+		<main className="textCenter">
 			<h1>Cadastre-se já!</h1>
 			<p>
 				Começe a planejar seu cronograma do dia a dia criando suas ofensivas
