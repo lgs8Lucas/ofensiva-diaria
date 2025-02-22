@@ -81,7 +81,21 @@ export const useAuthentication = () => {
 			await sendPasswordResetEmail(auth, email);
 		} catch (error) {
 			setError("Ocorreu um erro, por favor tente mais tarde");
-			console.log(error.message);
+		}
+		setLoading(false);
+	};
+
+	//Change update display name
+	const updateDisplayName = async (displayName) => {
+		checkIfIsCancelled();
+		setLoading(true);
+		setError(false);
+		try {
+			await updateProfile(auth.currentUser, { displayName });
+		} catch (error) {
+			setError(
+				"Ocorreu um erro ao alterar o nome de usuário, por favor tente mais tarde"
+			);
 		}
 		setLoading(false);
 	};
@@ -90,5 +104,14 @@ export const useAuthentication = () => {
 		return () => setCanceled(true);
 	}, []);
 
-	return { auth, createUser, error, loading, logout, login, requestNewPass };
+	return {
+		auth,
+		createUser,
+		error,
+		loading,
+		logout,
+		login,
+		requestNewPass,
+		updateDisplayName,
+	};
 };
