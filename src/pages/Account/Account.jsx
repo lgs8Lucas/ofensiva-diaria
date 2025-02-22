@@ -13,9 +13,15 @@ const Account = () => {
 		<main className={`${styles.configAccount}`}>
 			<h1>Configurações de conta</h1>
 			<div className={styles.menus}>
-				<AccountSection icon={faUser} title={"Alterar nome de usuário"} >
-                    <p>teste</p>
-                </AccountSection>
+				<AccountSection icon={faUser} title={"Alterar nome de usuário"}>
+					<form className={styles.controlForm}>
+						<label>
+                            <span>Novo nome de usuário:</span>
+							<input type="text" />
+						</label>
+                        <button className="btn">Alterar</button>
+					</form>
+				</AccountSection>
 				<button className={styles.logout} onClick={logout}>
 					<FontAwesomeIcon icon={faDoorOpen} />
 					<span>Sair</span>

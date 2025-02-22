@@ -14,10 +14,13 @@
 }
 
 .sectionHeader{
+    border: none;
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1.3em;
+    cursor: pointer;
 }
 
 .sectionHeader .title{
@@ -47,6 +50,11 @@
     filter: drop-shadow(0 0 0.75rem var(--color-gray));
     font-size: 1.35em;
     transition: .2s;
+}
+
+.controlForm{
+    margin-top: 1.5em;
+    width: 100%;
 }
 
 @media (max-width: 630px) {

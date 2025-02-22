@@ -3,20 +3,20 @@ import React, { useState } from "react";
 import styles from "./Account.module.css";
 import { faTurnDown } from "@fortawesome/free-solid-svg-icons";
 
-const AccountSection = ({ icon, title }) => {
+const AccountSection = ({ icon, title, children }) => {
 	const [show, setShow] = useState(false);
 	return (
 		<div className={styles.section}>
-			<div className={styles.sectionHeader}>
+			<button className={styles.sectionHeader} onClick={_=>setShow(!show)}>
 				<div className={styles.title}>
 					<FontAwesomeIcon icon={icon} />
 					<span>{title}</span>
 				</div>
 				<FontAwesomeIcon icon={faTurnDown} />
-			</div>
-            {show && {
-                
-            }}
+			</button>
+            {show && 
+                children
+            }
 		</div>
 	);
 };
