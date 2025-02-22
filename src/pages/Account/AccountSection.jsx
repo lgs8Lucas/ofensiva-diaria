@@ -6,7 +6,7 @@ import { faTurnDown, faTurnUp } from "@fortawesome/free-solid-svg-icons";
 const AccountSection = ({ icon, title, children }) => {
 	const [show, setShow] = useState(false);
 	return (
-		<div className={`${styles.section}`}>
+		<li className={`${styles.section}`}>
 			<button className={styles.sectionHeader} onClick={_=>setShow(!show)}>
 				<div className={styles.title}>
 					<FontAwesomeIcon icon={icon} />
@@ -17,7 +17,7 @@ const AccountSection = ({ icon, title, children }) => {
             {show && 
                 children
             }
-		</div>
+		</li>
 	);
 };
 
