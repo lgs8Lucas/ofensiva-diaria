@@ -31,7 +31,7 @@ const Account = () => {
 
 	return (
 		<main className={`${styles.configAccount}`}>
-			<h1>Configurações de conta</h1>
+			<h1>Configurações da conta</h1>
 			{error ? (
 				<div className="error mb-2">
 					<p>{error}</p>
