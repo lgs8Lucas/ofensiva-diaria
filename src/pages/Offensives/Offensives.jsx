@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
@@ -6,9 +6,18 @@ import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import { useSetOffensive } from "../../hooks/useSetOffensive";
 import OffensiveCard from "./OffensiveCard";
 import styles from "./Offensives.module.css";
+import { createPortal } from "react-dom";
+import Modal from "../../components/Modal";
 
 const Offensives = () => {
 	const user = useAuthValue();
+	const [showModal, setShowModal] = useState(false);
+	const [modalInfo, setModalInfo] = useState({
+		title: "",
+		content: "",
+		func: () => {},
+		bnt: "",
+	});
 
 	const {
 		documents: offensives,
@@ -22,7 +31,13 @@ const Offensives = () => {
 		useDeleteDocument("offensives");
 
 	const deleteOffensiveHandler = (id) => {
-		deleteDocument(id);
+		setShowModal(true);
+		setModalInfo({
+			title: "Confirmar",
+			content: "Você tem certeza que deseja apagar esta ofensiva?",
+			btn: "Sim",
+			func: () => deleteDocument(id),
+		});
 	};
 
 	const setOffensiveHandler = (offensive) => {
@@ -67,6 +82,11 @@ const Offensives = () => {
 					</p>
 				)}
 			</div>
+			{showModal &&
+				createPortal(
+					<Modal onClose={(_) => setShowModal(false)} {...modalInfo} />,
+					document.body
+				)}
 		</main>
 	);
 };

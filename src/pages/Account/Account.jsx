@@ -19,8 +19,6 @@ const Account = () => {
 	const [displayName, setDisplayName] = useState("");
 	const [message, setMessage] = useState("");
 
-	console.log(user);
-
 	const handleChangeName = async (e) => {
 		e.preventDefault();
 		await updateDisplayName(displayName);
