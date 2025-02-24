@@ -11,6 +11,8 @@ import {
 import styles from "./Account.module.css";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Modal from "../../components/Modal";
+import { createPortal } from "react-dom";
 
 const Account = () => {
 	const user = useAuthValue();
@@ -18,6 +20,14 @@ const Account = () => {
 		useAuthentication();
 	const [displayName, setDisplayName] = useState("");
 	const [message, setMessage] = useState("");
+
+	const [showModal, setShowModal] = useState(false);
+	const [modalInfo, setModalInfo] = useState({
+		title: "",
+		content: "",
+		func: () => {},
+		bnt: "",
+	});
 
 	const handleChangeName = async (e) => {
 		e.preventDefault();
@@ -27,6 +37,16 @@ const Account = () => {
 		}
 	};
 
+	const handleConfirmLogout = () =>{
+		setShowModal(true)
+		setModalInfo({
+			title: "Sair",
+			content: "Tem certeza que você deseja sair?",
+			btn:"Sair",
+			func: logout
+		})
+	}
+
 	return (
 		<main className={`${styles.configAccount}`}>
 			<h1>Configurações da conta</h1>
@@ -34,10 +54,12 @@ const Account = () => {
 				<div className="error mb-2">
 					<p>{error}</p>
 				</div>
-			) : message && (
-				<div className="message mb-2">
-					<p>{message}</p>
-				</div>
+			) : (
+				message && (
+					<div className="message mb-2">
+						<p>{message}</p>
+					</div>
+				)
 			)}
 			<ul className={styles.menus}>
 				<AccountSection icon={faUser} title={"Alterar nome de usuário"}>
@@ -86,12 +108,17 @@ const Account = () => {
 					<p>Em desenvolvimento...</p>
 				</AccountSection>
 				<li>
-					<button className={styles.logout} onClick={logout}>
+					<button className={styles.logout} onClick={handleConfirmLogout}>
 						<FontAwesomeIcon icon={faDoorOpen} />
 						<span>Sair</span>
 					</button>
 				</li>
 			</ul>
+			{showModal &&
+				createPortal(
+					<Modal onClose={(_) => setShowModal(false)} {...modalInfo} />,
+					document.body
+				)}
 		</main>
 	);
 };
