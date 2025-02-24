@@ -69,6 +69,10 @@
 		flex-direction: column;
 	}
 
+	.links_list{
+		padding: 0;
+	}
+
 	.navbar a,
 	.navbar button {
 		display: flex;
