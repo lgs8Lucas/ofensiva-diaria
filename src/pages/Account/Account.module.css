@@ -61,6 +61,11 @@
     width: 100%;
 }
 
+.sectionBody p, .sectionBody label span{
+    font-size: 1em;
+    font-weight: normal;
+}
+
 @media (max-width: 630px) {
 	.section {
 		width: 95%;

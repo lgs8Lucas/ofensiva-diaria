@@ -7,16 +7,18 @@ const AccountSection = ({ icon, title, children }) => {
 	const [show, setShow] = useState(false);
 	return (
 		<li className={`${styles.section}`}>
-			<button className={styles.sectionHeader} onClick={_=>setShow(!show)}>
+			<button className={styles.sectionHeader} onClick={(_) => setShow(!show)}>
 				<div className={styles.title}>
 					<FontAwesomeIcon icon={icon} />
 					<span>{title}</span>
 				</div>
-				{show?(<FontAwesomeIcon icon={faTurnUp}/>):(<FontAwesomeIcon icon={faTurnDown} />)}
+				{show ? (
+					<FontAwesomeIcon icon={faTurnUp} />
+				) : (
+					<FontAwesomeIcon icon={faTurnDown} />
+				)}
 			</button>
-            {show && 
-                children
-            }
+			{show && <div className={styles.sectionBody}>{children}</div>}
 		</li>
 	);
 };

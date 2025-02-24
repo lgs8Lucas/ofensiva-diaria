@@ -7,6 +7,7 @@ import {
 	updateProfile,
 	signOut,
 	sendPasswordResetEmail,
+	sendEmailVerification,
 } from "firebase/auth"; //Pegando funções do Firebase
 
 import { useState, useEffect } from "react";
@@ -94,7 +95,22 @@ export const useAuthentication = () => {
 			await updateProfile(auth.currentUser, { displayName });
 		} catch (error) {
 			setError(
-				"Ocorreu um erro ao alterar o nome de usuário, por favor tente mais tarde"
+				"Ocorreu um erro ao alterar o nome de usuário, por favor tente mais tarde."
+			);
+		}
+		setLoading(false);
+	};
+
+	//Verify email
+	const verifyEmail = async () => {
+		checkIfIsCancelled();
+		setLoading(true);
+		setError(false);
+		try {
+			await sendEmailVerification(auth.currentUser);
+		} catch (error) {
+			setError(
+				"Ocorreu um erro ao enviar o email de confirmação, verifique seu email e tente novamente mais tarde."
 			);
 		}
 		setLoading(false);
@@ -113,5 +129,6 @@ export const useAuthentication = () => {
 		login,
 		requestNewPass,
 		updateDisplayName,
+		verifyEmail,
 	};
 };
