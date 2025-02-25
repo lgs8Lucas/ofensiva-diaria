@@ -15,15 +15,20 @@ const Modal = ({ onClose, title, content, func, btn }) => {
 				</div>
 				<div className={styles.body}>
 					<p>{content}</p>
-					<button className="btn btn-dark mr-2"
-						onClick={() => {
-							onClose();
-							func();
-						}}
-					>
-						{btn}
-					</button>
-                    <button className="btn btn-dark" onClick={onClose}>Cancelar</button>
+					<div className={styles.modalControl}>
+						<button
+							className="btn btn-dark"
+							onClick={() => {
+								onClose();
+								func();
+							}}
+						>
+							{btn}
+						</button>
+						<button className="btn btn-dark" onClick={onClose}>
+							Cancelar
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
