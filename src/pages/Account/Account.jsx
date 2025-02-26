@@ -19,6 +19,11 @@ const Account = () => {
 	const { logout, error, loading, updateDisplayName, verifyEmail } =
 		useAuthentication();
 	const [displayName, setDisplayName] = useState("");
+	const [passControl, setPassControl] = useState({
+		actualPass: "",
+		newPass: "",
+		confirmNewPass: "",
+	});
 	const [message, setMessage] = useState("");
 
 	const [showModal, setShowModal] = useState(false);
@@ -37,15 +42,35 @@ const Account = () => {
 		}
 	};
 
-	const handleConfirmLogout = () =>{
-		setShowModal(true)
+	const changeInputPass = (e) => {
+		const old = passControl;
+		old[e.target.name] = e.target.value;
+		setPassControl({ ...old });
+	};
+	const handleChangePasswod = async (e) => {
+		e.preventDefault();
+		console.log(passControl);
+		if (passControl.actualPass == passControl.newPass) {
+			setMessage("A nova senha não pode ser igual a senha atual.")
+			return;
+		}else if (passControl.newPass != passControl.confirmNewPass) {
+			setMessage("As senhas não coincidem.")
+			return;
+		}
+		setMessage("");
+		//setMessage("Senha Alterada!")
+		setPassControl({ actualPass: "", newPass: "", confirmNewPass: "" });
+	};
+
+	const handleConfirmLogout = () => {
+		setShowModal(true);
 		setModalInfo({
 			title: "Sair",
 			content: "Tem certeza que você deseja sair?",
-			btn:"Sair",
-			func: logout
-		})
-	}
+			btn: "Sair",
+			func: logout,
+		});
+	};
 
 	return (
 		<main className={`${styles.configAccount}`}>
@@ -98,7 +123,39 @@ const Account = () => {
 					</AccountSection>
 				) : (
 					<AccountSection icon={faKey} title={"Alterar senha"}>
-						<p>Em desenvolvimento...</p>
+						<form className={styles.controlForm} onSubmit={handleChangePasswod}>
+							<label>
+								<span>Digite sua senha atual: </span>
+								<input
+									type="password"
+									required
+									name="actualPass"
+									value={passControl.actualPass}
+									onChange={changeInputPass}
+								/>
+							</label>
+							<label>
+								<span>Digite sua nova senha: </span>
+								<input
+									type="password"
+									required
+									name="newPass"
+									value={passControl.newPass}
+									onChange={changeInputPass}
+								/>
+							</label>
+							<label>
+								<span>Confirme sua nova senha: </span>
+								<input
+									type="password"
+									required
+									name="confirmNewPass"
+									value={passControl.confirmNewPass}
+									onChange={changeInputPass}
+								/>
+							</label>
+							<button className="btn">Alterar</button>
+						</form>
 					</AccountSection>
 				)}
 				<AccountSection icon={faEnvelope} title={"Alterar Email"}>
