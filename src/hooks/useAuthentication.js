@@ -8,6 +8,9 @@ import {
 	signOut,
 	sendPasswordResetEmail,
 	sendEmailVerification,
+	reauthenticateWithCredential,
+	updatePassword,
+	EmailAuthProvider,
 } from "firebase/auth"; //Pegando funções do Firebase
 
 import { useState, useEffect } from "react";
@@ -116,6 +119,41 @@ export const useAuthentication = () => {
 		setLoading(false);
 	};
 
+	//Re-authentication
+	const reAuthentication = async (credentialData) => {
+		try {
+			const credential = EmailAuthProvider.credential(
+				credentialData.email,
+				credentialData.password
+			);
+
+			await reauthenticateWithCredential(auth.currentUser, credential);
+			return true;
+		} catch (error) {
+			setError(
+				"Ocorreu um erro, verifique sua senha e tente novamente mais tarde."
+			);
+			return false;
+		}
+	};
+
+	//ChangePassword
+	const changePassword = async (credential, newPassword) => {
+		checkIfIsCancelled();
+		setLoading(true);
+		setError(false);
+		const logged = await reAuthentication(credential);
+		if (!logged) return;
+		try {
+			await updatePassword(auth.currentUser, newPassword);
+		} catch (error) {
+			console.log(error);
+
+			setError("Erro ao alterar a senha, tente novamente mais tarde.");
+		}
+		setLoading(false);
+	};
+
 	useEffect(() => {
 		return () => setCanceled(true);
 	}, []);
@@ -130,5 +168,6 @@ export const useAuthentication = () => {
 		requestNewPass,
 		updateDisplayName,
 		verifyEmail,
+		changePassword,
 	};
 };

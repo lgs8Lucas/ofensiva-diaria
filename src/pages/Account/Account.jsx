@@ -16,8 +16,14 @@ import { createPortal } from "react-dom";
 
 const Account = () => {
 	const user = useAuthValue();
-	const { logout, error, loading, updateDisplayName, verifyEmail } =
-		useAuthentication();
+	const {
+		logout,
+		error,
+		loading,
+		updateDisplayName,
+		verifyEmail,
+		changePassword,
+	} = useAuthentication();
 	const [displayName, setDisplayName] = useState("");
 	const [passControl, setPassControl] = useState({
 		actualPass: "",
@@ -49,17 +55,21 @@ const Account = () => {
 	};
 	const handleChangePasswod = async (e) => {
 		e.preventDefault();
-		console.log(passControl);
 		if (passControl.actualPass == passControl.newPass) {
-			setMessage("A nova senha não pode ser igual a senha atual.")
+			setMessage("A nova senha não pode ser igual a senha atual.");
 			return;
-		}else if (passControl.newPass != passControl.confirmNewPass) {
-			setMessage("As senhas não coincidem.")
+		} else if (passControl.newPass != passControl.confirmNewPass) {
+			setMessage("As senhas não coincidem.");
 			return;
 		}
-		setMessage("");
-		//setMessage("Senha Alterada!")
-		setPassControl({ actualPass: "", newPass: "", confirmNewPass: "" });
+		await changePassword(
+			{ email: user.email, password: passControl.actualPass },
+			passControl.newPass
+		);
+		if (!error) {
+			setMessage("Senha Alterada!");
+			setPassControl({ actualPass: "", newPass: "", confirmNewPass: "" });
+		}
 	};
 
 	const handleConfirmLogout = () => {
@@ -154,7 +164,9 @@ const Account = () => {
 									onChange={changeInputPass}
 								/>
 							</label>
-							<button className="btn">Alterar</button>
+							<button className="btn" disabled={loading}>
+								Alterar
+							</button>
 						</form>
 					</AccountSection>
 				)}
